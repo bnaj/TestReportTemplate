@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1">
+    <test name="test number 3" parallel="false">
+        <classes>
+            <class name="ExampleTest2"/>
+            <parameter name="browser" value="chrome64"/>
+            <parameter name="pageLoadTimeOut" value="15"/>
+            <parameter name="waitForElementAvaliable" value="15"/>
+        </classes>
+
+    </test>
+</suite>
