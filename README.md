@@ -2,6 +2,7 @@
 Hello all!
 If you want see how implement new report style in TestNg to look like below.
 I'  prepepared some examples of test method to show how its look.<br/>
+
 ![ScreenShot](https://repository-images.githubusercontent.com/188700511/e3091000-7fde-11e9-81d9-998116a4f183)
 
 
@@ -51,7 +52,7 @@ Reporter.log  to fills Test resoult cell, like:
 ### Navbar
 Report contains navbar with drop down list which is to help you navigate the test. When user scroll down document than navbar follows him.
 ### Report output
-After test new report file is generated in _/src/main/_ 
+After test new report file is generated in _project base dir "newReport.html"_ 
 You can change this in **_onExecutionFinish_** method in line 222.
 ```java 
     File newHtmlFilePath = new File("src/main/new.html");

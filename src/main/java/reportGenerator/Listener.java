@@ -219,7 +219,7 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
                     computePercent(numberOfAllSteps, numberOfAllStepsFailed));
             htmlString = htmlString.replace("$percentSkippedSteps",
                     computePercent(numberOfAllStepsSkiped, numberOfAllStepsPassed));
-            File newHtmlFilePath = new File("src/main/new.html");
+            File newHtmlFilePath = new File("newReport.html");
             File newHtmlFile = new File(newHtmlFilePath.getAbsolutePath());
             Files.write(Paths.get(newHtmlFile.getAbsolutePath()), htmlString.getBytes());
         } catch (IOException e) {
