@@ -1,7 +1,7 @@
 package reportGenerator;
 
 import Driver.Driver;
-import org.apache.commons.io.FileUtils;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,9 @@ import org.testng.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -197,9 +200,8 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
                 (listWithPassedScenario),eliminateDuplicate(listWithFailedScenario)));
         String skippedDropDown = dropdownMenuWitScenarioLoad(eliminateDuplicate(listWithSkippedScenario));
         File htmlTemplateFilePath = new File("src/main/java/reportGenerator/htmlTemplate/exampleTemplate.html");
-        File htmlTemplateFile = new File(htmlTemplateFilePath.getAbsolutePath());
         try {
-            String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+            String htmlString = new String(Files.readAllBytes(Paths.get(htmlTemplateFilePath.getAbsolutePath())));
             htmlString = htmlString.replace("$os", System.getProperty("os.name") + "<br>" + "OS version: "
                     + System.getProperty("os.version") + "<br>" + "Architecture: " +System.getProperty("os.arch"));
             htmlString = htmlString.replace("$dateTime", getDate());
@@ -220,9 +222,10 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
                     computePercent(numberOfAllStepsSkiped, numberOfAllStepsPassed));
             File newHtmlFilePath = new File("src/main/new.html");
             File newHtmlFile = new File(newHtmlFilePath.getAbsolutePath());
-            FileUtils.writeStringToFile(newHtmlFile, htmlString);
+            Files.write(Paths.get(newHtmlFile.getAbsolutePath()), htmlString.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("HTML File not found!!!");
         }
     }
 
@@ -381,11 +384,15 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
      * @return image in String base64.
      */
     private String statusImage(File filePath) {
+        Path path = Paths.get(filePath.getAbsolutePath());
         byte[] fileContent = new byte[0];
         try {
-            fileContent = FileUtils.readFileToByteArray(filePath);
+            fileContent = Files.readAllBytes(path);
         } catch (IOException e) {
             e.printStackTrace();
+            String file = String.valueOf(e.fillInStackTrace());
+            System.out.println("File: " +
+                    file.replace("java.io.FileNotFoundException:", "").trim() + " not found!");
         }
         Base64.Encoder encoder = Base64.getEncoder();
         String encodedString = Base64.getEncoder().encodeToString(fileContent);
