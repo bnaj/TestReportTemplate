@@ -2,6 +2,8 @@
 Hello all!
 If you want see how implement new report style in TestNg to look like below.
 I'  prepepared some examples of test method to show how its look.<br/>
+Full example of report you can download from base project dir "newReport.html" 
+https://github.com/bnaj/TestReportTemplate/blob/master/newReport.html
 
 ![ScreenShot](https://repository-images.githubusercontent.com/188700511/e3091000-7fde-11e9-81d9-998116a4f183)
 
