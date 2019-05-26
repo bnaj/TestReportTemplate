@@ -1,4 +1,4 @@
-#Test Report Template
+# Test Report Template
 Hello all!
 If you want see how implement new report style in TestNg to look like below.
 I'  prepepared some examples of test method to show how its look.
@@ -8,7 +8,7 @@ This project is example of custom automation test reports. After generation repo
 In this project methods from TestNg listener was override.
 Project implement screen capture functionality from Selenium library. 
 
-###Screen capture methods
+### Screen capture methods
 Screen capture methods is activated when test method is 
 end with failed status. **_TakesScreenshot_** save image in 
 String base64 in method **captureScreen**. 
@@ -30,7 +30,7 @@ captureScreen(driver) + "\"width=\"200px\" height=\"200px\">");
 }
 ```
 Pay attention on type of WebDriver. In my code is Driver, because in my test classes I use driver what is extends of Driver class.             
-###Report table
+### Report table
 Default when you open file with your report, you see only tabs withaut table. You can open table by clicking on the tab with name of test.
 Listener fills cells in table using:
 Name of step methods to fills name of methods in status cell like:
@@ -47,7 +47,7 @@ Reporter.log  to fills Test resoult cell, like:
                 Reporter.log("report from going to site"); <-test resoult cell
                 }
 ```
-###Navbar
+### Navbar
 Report contains navbar with drop down list which is to help you navigate the test. When user scroll down document than navbar follows him.
 ###Report output
 After test new report file is generated in _/src/main/_ 
@@ -57,7 +57,7 @@ You can change this in **_onExecutionFinish_** method in line 222.
             File newHtmlFile = new File(newHtmlFilePath.getAbsolutePath());
             Files.write(Paths.get(newHtmlFile.getAbsolutePath()), htmlString.getBytes());
 ```
-###Configure pom.xml
+### Configure pom.xml
 To use this Listener you must add Listener.class to pom.xml configuration in maven surfire plugin, like below:
 ```
 <plugin>
@@ -81,13 +81,13 @@ To use this Listener you must add Listener.class to pom.xml configuration in mav
                 </configuration>
             </plugin>
  ```
-##Classes used in project
+## Classes used in project
 In package Driver: _Driver_ class, where i generate webdriver.
 In Java folder:
 _ExampleTest1_ and _ExampleTest2_ where I extend _Driver.class_ and write test steps
 In packade reportGenerator: _Listener_ where I implements **_IExecutionListener, ITestListener, ISuiteListener, IInvokedMethodListener_**
-#Linux driver for selenium
+# Linux driver for selenium
 In resources folder you can find driver used in this project to generate report.
 Because I use friendly OS like LINUX i have there linux driver. If you use other OS you must download driver for your os and do some change in Driver class.
 
-###thanks for your interest and reading this file bay.
+### thanks for your interest and reading this file bay.
