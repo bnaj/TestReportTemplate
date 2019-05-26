@@ -91,4 +91,3 @@ In resources folder you can find driver used in this project to generate report.
 Because I use friendly OS like LINUX i have there linux driver. If you use other OS you must download driver for your os and do some change in Driver class.
 
 ###thanks for your interest and reading this file bay.
-  
