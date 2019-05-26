@@ -49,7 +49,7 @@ Reporter.log  to fills Test resoult cell, like:
 ```
 ### Navbar
 Report contains navbar with drop down list which is to help you navigate the test. When user scroll down document than navbar follows him.
-###Report output
+### Report output
 After test new report file is generated in _/src/main/_ 
 You can change this in **_onExecutionFinish_** method in line 222.
 ```java 
