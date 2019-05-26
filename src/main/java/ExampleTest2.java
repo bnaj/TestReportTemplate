@@ -19,7 +19,7 @@ public class ExampleTest2 extends Driver {
         Reporter.log("report from method 2");
     }
 
-    @Test(testName = "Method 3")
+    @Test(description = "Method 3")
     public void step03() {
         System.out.println("metoda3");
         boolean abc = true;
