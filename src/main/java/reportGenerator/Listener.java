@@ -219,7 +219,7 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
                     computePercent(numberOfAllSteps, numberOfAllStepsFailed));
             htmlString = htmlString.replace("$percentSkippedSteps",
                     computePercent(numberOfAllStepsSkiped, numberOfAllStepsPassed));
-            File newHtmlFilePath = new File("newReport.html");
+            File newHtmlFilePath = new File(getDate()+"newReport.html");
             File newHtmlFile = new File(newHtmlFilePath.getAbsolutePath());
             Files.write(Paths.get(newHtmlFile.getAbsolutePath()), htmlString.getBytes());
         } catch (IOException e) {
@@ -393,7 +393,6 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
             System.out.println("File: " +
                     file.replace("java.io.FileNotFoundException:", "").trim() + " not found!");
         }
-        Base64.Encoder encoder = Base64.getEncoder();
         String encodedString = Base64.getEncoder().encodeToString(fileContent);
         return "<img src=\"data:image/png;base64," + encodedString + "\" width=\"40px\" height=\"40px\">";
     }
