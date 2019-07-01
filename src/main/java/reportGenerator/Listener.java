@@ -1,10 +1,13 @@
 package reportGenerator;
 
 import Driver.Driver;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashSet;
 
 /**
  * @Author JB.
@@ -167,16 +171,11 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
      * Report is not returned if test is failed.
      */
     private String stepOutput(ITestResult result) {
-        String output = "";
-        if ((Reporter.getOutput(result) != null) && (Reporter.getOutput(result).size() > 0)) {
-            output = Reporter.getOutput(result).get(0);
-            if (!(output.length() > 0)) {
-                output = "No info found";
-            }
+        if (CollectionUtils.isNotEmpty(Reporter.getOutput(result))) {
+            return StringUtils.defaultIfEmpty(Reporter.getOutput(result).get(0), "No info found");
         } else {
-            output = "No info found";
+            return "No info found";
         }
-        return output;
     }
 
     public void onExecutionStart() {
@@ -289,9 +288,7 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
      */
     private ArrayList<String> passScenarioList(ArrayList<String> pass, ArrayList<String> fail) {
         for (String d : fail) {
-            if (pass.contains(d)) {
-                pass.remove(d);
-            }
+            pass.remove(d);
         }
         return pass;
     }
@@ -344,13 +341,7 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
      * @return array list without duplication.
      */
     private ArrayList<String> eliminateDuplicate(ArrayList<String> duplicate){
-        ArrayList<String> noDuplicate = new ArrayList<>();
-        for (String d : duplicate) {
-            if (!noDuplicate.contains(d)) {
-                noDuplicate.add(d);
-            }
-        }
-        return noDuplicate;
+        return new ArrayList<>(new HashSet<>(duplicate));
     }
 
     /**
