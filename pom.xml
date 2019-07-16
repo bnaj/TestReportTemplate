@@ -8,10 +8,10 @@
     <version>1.0</version>
     <dependencies>
         <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>3.6.0</version>
-    </dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.6.0</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -29,7 +29,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0.1</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>

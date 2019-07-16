@@ -96,9 +96,14 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
         getStatusToList(result);
         Object currentClass = result.getInstance();
         WebDriver driver = ((Driver) currentClass).driver;
-        Reporter.log(  "Click right button and open image in new tab" + "<br><img src=\"data:image/png;base64," +
-                captureScreen(driver) + "\"width=\"200px\" height=\"200px\">");
+        try {
+            Reporter.log("Click right button and open image in new tab" + "<br><img src=\"data:image/png;base64," +
+                    captureScreen(driver) + "\"width=\"200px\" height=\"200px\">");
+        }catch (Exception e){
+            Reporter.log("Driver throw exception test is aborted. " + e.getClass());
+            driver.quit();
         }
+    }
 
     public void onTestStart(ITestResult result) {
         }
@@ -326,11 +331,12 @@ public class Listener implements IExecutionListener, ITestListener, ISuiteListen
     }
 
     /**
-     * Method what generate data and format it yyyy.MM.dd HH:mm:ss.
+     * Method what generate data and format it yyyy.MM.dd HH.mm.ss.
+     * On linux system can be : like time separator.
      * @return date.
      */
     private String getDate(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH.mm.ss");
         Date date = new Date();
         return dateFormat.format(date);
     }
